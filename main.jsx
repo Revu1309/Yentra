@@ -1,6 +1,27 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import TrueFocus from './src/components/TrueFocus.jsx';
 import './style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- React TrueFocus Slogan ---
+  const sloganRootElement = document.getElementById('slogan-focus-root');
+  if (sloganRootElement) {
+    const root = createRoot(sloganRootElement);
+    root.render(
+      <TrueFocus 
+        sentence="Create Beyond" 
+        manualMode={false} 
+        blurAmount={3} 
+        borderColor="#a855f7" 
+        glowColor="rgba(168, 85, 247, 0.5)" 
+        animationDuration={1.2} 
+        pauseBetweenAnimations={0.5} 
+      />
+    );
+  }
+
+  // --- Background Video Logic ---
   const video = document.getElementById('hero-video');
   
   if (!video) return;
