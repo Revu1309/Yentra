@@ -4,6 +4,46 @@ import TrueFocus from './src/components/TrueFocus.jsx';
 import './style.css'
 
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Paint Brush Logic ---
+  const letters = document.querySelectorAll('.hover-gradient-letter');
+  letters.forEach(letter => {
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+    let isHovering = false;
+    let initialized = false;
+
+    letter.addEventListener('mousemove', e => {
+      const rect = letter.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+      
+      // Instantly snap to position on first hover
+      if (!initialized) {
+        currentX = targetX;
+        currentY = targetY;
+        initialized = true;
+      }
+      isHovering = true;
+    });
+
+    letter.addEventListener('mouseleave', () => {
+      isHovering = false;
+      initialized = false;
+    });
+
+    const updateBrush = () => {
+      if (isHovering) {
+        // Smoothly interpolate the brush towards the target cursor position
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+        letter.style.setProperty('--mouse-x', `${currentX}px`);
+        letter.style.setProperty('--mouse-y', `${currentY}px`);
+      }
+      requestAnimationFrame(updateBrush);
+    };
+    requestAnimationFrame(updateBrush);
+  });
+
   // --- React TrueFocus Slogan ---
   const sloganRootElement = document.getElementById('slogan-focus-root');
   if (sloganRootElement) {
