@@ -1,5 +1,4 @@
 @import "@fontsource/geist-sans";
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,16 +11,60 @@
     --hero-sub: 40 6% 82%;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: 'Geist Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /*
+   * Global SVG size guard — prevents inline SVG icons from expanding to fill
+   * their container when Tailwind utility classes (w-*, h-*) are not yet loaded.
+   * This targets SVGs that have no explicit width/height HTML attribute set.
+   */
+  svg:not([width]):not([height]) {
+    width: 1.5rem;
+    max-width: 1.5rem;
+    height: 1.5rem;
+    max-height: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  /*
+   * Navbar layout guard — ensures nav links are always displayed inline
+   * with spacing, even when Tailwind CSS hasn't compiled yet.
+   */
+  nav a, nav button {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  /* Custom dark scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(260, 87%, 3%);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(168, 85, 247, 0.25);
+    border-radius: 5px;
+    border: 2px solid hsl(260, 87%, 3%);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.5);
   }
 }
 
 @layer components {
   .heroSecondary {
-    @apply bg-white/10 hover:bg-white/20 text-foreground transition-colors duration-200 rounded-full font-medium;
+    @apply bg-white/10 hover:bg-white/20 text-foreground transition-all duration-300 rounded-full font-medium backdrop-blur-md border border-white/10 hover:border-white/20 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)];
   }
   
   .hover-gradient-letter {
@@ -37,6 +80,28 @@
   
   .hover-gradient-letter:hover {
     color: transparent;
+  }
+
+  /* Hero headline per-letter brush gradient */
+  .hero-letter {
+    background-image: radial-gradient(circle 200px at var(--mouse-x, 50%) var(--mouse-y, 50%), #fcd34d 0%, #a855f7 35%, #6366f1 65%, hsl(var(--foreground)) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: hsl(var(--foreground));
+    transition: color 0.35s ease-out;
+    display: inline-block;
+  }
+
+  .hero-letter:hover {
+    color: transparent;
+  }
+
+  .glass-card {
+    @apply bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-purple-500/30 backdrop-blur-xl transition-all duration-300 shadow-lg hover:shadow-purple-500/10;
+  }
+
+  .glass-panel {
+    @apply bg-white/[0.02] border border-white/10 backdrop-blur-2xl;
   }
 }
 
@@ -67,5 +132,9 @@
   .fade-edges {
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .text-gradient-purple {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400;
   }
 }
