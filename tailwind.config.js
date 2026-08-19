@@ -11,10 +11,13 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         "hero-sub": "hsl(var(--hero-sub))",
+        neon: "#c4ff00",
+        coral: "#ff8b71",
       },
       fontFamily: {
         sans: ['Geist Sans', 'sans-serif'],
         display: ['General Sans', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
       },
       animation: {
         'marquee': 'marquee 30s linear infinite',

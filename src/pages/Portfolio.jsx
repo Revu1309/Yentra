@@ -157,36 +157,33 @@ export default function Portfolio() {
 
   return (
     <div className="relative pt-32 pb-20 overflow-hidden">
-      {/* Ambient Background Glow */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-purple-600/10 blur-[150px] pointer-events-none -z-10" />
-
       {/* Hero Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/30 mb-6">
-          Our Work
-        </span>
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-foreground tracking-tight max-w-4xl mx-auto leading-[1.1] mb-8">
-          Crafted with precision.{' '}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-            Engineered for impact.
+        <div className="flex justify-center mb-12">
+          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-neon">
+            ↳ SYSTEM / PORTFOLIO
           </span>
+        </div>
+        <h1 className="text-[clamp(4rem,9vw,10rem)] font-display font-black text-white tracking-tighter uppercase leading-[0.85] mb-12">
+          ENGINEERED <br />
+          <span className="text-neon">FOR IMPACT.</span>
         </h1>
-        <p className="max-w-3xl mx-auto text-lg sm:text-xl text-foreground/75 leading-relaxed">
-          Every project we ship represents a fusion of Silicon Valley engineering standards and premium visual design. Explore our portfolio below.
+        <p className="max-w-2xl mx-auto text-lg sm:text-xl font-mono text-foreground/60 leading-relaxed uppercase">
+          Every project we ship represents a fusion of Silicon Valley engineering standards and premium visual design.
         </p>
       </div>
 
       {/* Category Filter Tabs */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 flex justify-center">
-        <div className="inline-flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-xl">
+        <div className="inline-flex flex-wrap items-center justify-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-none">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+              className={`px-5 py-2.5 rounded-none font-mono text-xs uppercase tracking-widest transition-all duration-300 border ${
                 activeFilter === cat
-                  ? 'bg-purple-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.5)]'
-                  : 'text-foreground/70 hover:text-foreground hover:bg-white/5'
+                  ? 'bg-neon text-black border-neon'
+                  : 'text-foreground/70 border-transparent hover:border-white/20 hover:text-white'
               }`}
             >
               {cat}
@@ -198,7 +195,7 @@ export default function Portfolio() {
       {/* Projects Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 mb-32">
         {filteredProjects.map((project, index) => (
-          <GlassCard key={project.id} className="p-0 overflow-hidden" glowColor="purple" hoverEffect={false}>
+          <GlassCard key={project.id} className="p-0 overflow-hidden" glowColor="none" hoverEffect={false}>
             <div className={`grid grid-cols-1 lg:grid-cols-12 gap-0 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
               {/* Cover Image & Gallery Preview */}
               <div className={`lg:col-span-6 relative overflow-hidden min-h-[380px] ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
@@ -208,7 +205,7 @@ export default function Portfolio() {
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 rounded-full bg-background/80 backdrop-blur-md text-xs font-semibold text-purple-300 border border-white/10">
+                  <span className="px-3 py-1 bg-black text-xs font-mono font-semibold text-neon border border-neon uppercase tracking-widest">
                     {project.industry}
                   </span>
                 </div>
@@ -217,46 +214,44 @@ export default function Portfolio() {
               {/* Project Metadata */}
               <div className={`lg:col-span-6 p-8 sm:p-12 flex flex-col justify-between ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <div>
-                  <div className="flex items-center justify-between text-xs text-foreground/50 mb-3 font-mono">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-foreground/50 mb-6 font-mono uppercase tracking-widest gap-2">
                     <span>CLIENT: {project.client}</span>
                     <span>TIMELINE: {project.timeline}</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-display font-semibold text-foreground mb-6">
+                  <h2 className="text-3xl sm:text-4xl font-display font-black uppercase text-white tracking-tighter mb-6 leading-none">
                     {project.name}
                   </h2>
 
                   {/* Challenge & Solution */}
-                  <div className="space-y-4 mb-6">
+                  <div className="space-y-6 mb-8 border-t border-white/10 pt-6">
                     <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-1">
-                        The Challenge
+                      <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-coral mb-2">
+                        ↳ The Challenge
                       </h3>
-                      <p className="text-sm text-foreground/80 leading-relaxed">
+                      <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
                         {project.challenge}
                       </p>
                     </div>
                     <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-purple-400 mb-1">
-                        Our Solution
+                      <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-neon mb-2">
+                        ↳ Our Solution
                       </h3>
-                      <p className="text-sm text-foreground/80 leading-relaxed">
+                      <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
                         {project.solution}
                       </p>
                     </div>
                   </div>
 
                   {/* Key Outcomes */}
-                  <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 mb-8 space-y-2">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-purple-300 mb-2">
+                  <div className="p-6 bg-white/5 border border-white/10 mb-8 space-y-4">
+                    <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-white">
                       Key Outcomes
                     </h3>
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-2">
                       {project.outcomes.map((item, i) => (
-                        <li key={i} className="flex items-center gap-2 text-sm text-foreground/90 font-medium">
-                          <svg className="w-4 h-4 text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                          </svg>
-                          <span>{item}</span>
+                        <li key={i} className="flex items-start gap-2 text-sm text-neon font-mono uppercase">
+                          <span>›</span>
+                          <span className="text-foreground/90">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -269,7 +264,7 @@ export default function Portfolio() {
                     {project.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 rounded-full bg-white/5 text-xs font-medium text-foreground/70 border border-white/10"
+                        className="px-3 py-1.5 bg-black text-xs font-mono uppercase tracking-widest text-foreground/70 border border-white/20"
                       >
                         {tech}
                       </span>
@@ -279,7 +274,7 @@ export default function Portfolio() {
                   {project.isCaseStudy && (
                     <a
                       href={`#case-study-${project.id}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors"
+                      className="inline-flex items-center gap-2 text-sm font-mono font-bold uppercase tracking-widest text-neon hover:text-white transition-colors"
                     >
                       <span>Read Deep-Dive Case Study Below</span>
                       <span>↓</span>
@@ -306,79 +301,73 @@ export default function Portfolio() {
             .filter((p) => p.isCaseStudy)
             .map((p) => (
               <div key={p.id} id={`case-study-${p.id}`} className="scroll-mt-32">
-                <GlassCard className="p-8 sm:p-14 lg:p-16" glowColor="purple">
+                <GlassCard className="p-8 sm:p-14 lg:p-16" glowColor="none">
                   <div className="border-b border-white/10 pb-8 mb-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                      <span className="text-xs font-semibold uppercase tracking-wider text-purple-400">
-                        Case Study Deep-Dive
+                      <span className="font-mono text-xs font-bold uppercase tracking-widest text-neon block mb-2">
+                        ↳ CASE STUDY DEEP-DIVE
                       </span>
-                      <h3 className="text-2xl sm:text-4xl font-display font-semibold text-foreground mt-2">
+                      <h3 className="text-3xl sm:text-5xl font-display font-black text-white uppercase tracking-tighter">
                         {p.name}
                       </h3>
                     </div>
-                    <span className="text-xs px-3 py-1.5 rounded-full bg-purple-500/15 text-purple-300 font-mono self-start sm:self-center">
+                    <span className="text-xs px-3 py-1.5 bg-white/5 text-foreground/70 font-mono tracking-widest uppercase border border-white/10 self-start sm:self-center">
                       {p.timeline}
                     </span>
                   </div>
 
                   {/* 6-Part Narrative Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple-400" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-neon">
                         01. The Client's Problem
                       </h4>
-                      <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
+                      <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
                         {p.caseStudy.problem}
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple-400" />
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-neon">
                         02. Our Technical Research
                       </h4>
-                      <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
+                      <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
                         {p.caseStudy.research}
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple-400" />
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-neon">
                         03. The Design Process
                       </h4>
-                      <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
+                      <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
                         {p.caseStudy.designProcess}
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple-400" />
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-neon">
                         04. Development Approach
                       </h4>
-                      <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
+                      <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
                         {p.caseStudy.developmentApproach}
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple-400" />
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-neon">
                         05. Measurable Results
                       </h4>
-                      <p className="text-sm sm:text-base text-foreground/80 leading-relaxed font-semibold text-purple-300">
+                      <p className="text-sm font-mono text-coral font-bold leading-relaxed uppercase">
                         {p.caseStudy.results}
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple-400" />
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-neon">
                         06. Lessons Learned
                       </h4>
-                      <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
+                      <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
                         {p.caseStudy.lessonsLearned}
                       </p>
                     </div>

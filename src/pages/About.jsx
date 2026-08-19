@@ -72,17 +72,17 @@ export default function About() {
   return (
     <div className="relative pt-32 pb-20 overflow-hidden">
       {/* Background ambient glow */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/10 blur-[150px] pointer-events-none -z-10" />
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-background pointer-events-none -z-10" />
 
       {/* Hero Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-28">
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/30 mb-6">
-          About Yentra
+        <span className="inline-flex items-center gap-2 px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-widest text-neon border border-neon mb-6">
+          ↳ ABOUT YENTRA
         </span>
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-foreground tracking-tight max-w-4xl mx-auto leading-[1.1] mb-8">
-          We engineer software that{' '}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-            defies the ordinary.
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-black text-white uppercase tracking-tighter max-w-4xl mx-auto leading-[0.85] mb-8">
+          WE ENGINEER SOFTWARE THAT <br />
+          <span className="text-neon">
+            DEFIES THE ORDINARY.
           </span>
         </h1>
         <p className="max-w-3xl mx-auto text-lg sm:text-xl text-foreground/75 leading-relaxed">
@@ -92,11 +92,11 @@ export default function About() {
 
       {/* Story Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-28">
-        <GlassCard className="p-8 sm:p-14 lg:p-16" glowColor="purple">
+        <GlassCard className="p-8 sm:p-14 lg:p-16 border-neon" glowColor="none">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
-              <span className="text-xs font-semibold uppercase tracking-wider text-purple-400">
-                Our Story & Philosophy
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-neon">
+                ↳ OUR STORY & PHILOSOPHY
               </span>
               <h2 className="text-3xl sm:text-4xl font-display font-semibold text-foreground leading-tight">
                 Why we build software
@@ -109,21 +109,21 @@ export default function About() {
               </p>
             </div>
             <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <div className="text-3xl sm:text-4xl font-display font-bold text-purple-400 mb-2">99.9%</div>
-                <div className="text-xs text-foreground/60 uppercase tracking-wider font-semibold">Uptime SLA</div>
+              <div className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
+                <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">99.9%</div>
+                <div className="font-mono text-xs uppercase tracking-widest font-bold">UPTIME SLA</div>
               </div>
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <div className="text-3xl sm:text-4xl font-display font-bold text-pink-400 mb-2">&lt;100ms</div>
-                <div className="text-xs text-foreground/60 uppercase tracking-wider font-semibold">Avg API Response</div>
+              <div className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
+                <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">&lt;100ms</div>
+                <div className="font-mono text-xs uppercase tracking-widest font-bold">AVG API RESPONSE</div>
               </div>
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <div className="text-3xl sm:text-4xl font-display font-bold text-indigo-400 mb-2">100+</div>
-                <div className="text-xs text-foreground/60 uppercase tracking-wider font-semibold">Projects Shipped</div>
+              <div className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
+                <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">100+</div>
+                <div className="font-mono text-xs uppercase tracking-widest font-bold">PROJECTS SHIPPED</div>
               </div>
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 text-center">
-                <div className="text-3xl sm:text-4xl font-display font-bold text-purple-300 mb-2">24/7</div>
-                <div className="text-xs text-foreground/60 uppercase tracking-wider font-semibold">Dedicated Support</div>
+              <div className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
+                <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">24/7</div>
+                <div className="font-mono text-xs uppercase tracking-widest font-bold">DEDICATED SUPPORT</div>
               </div>
             </div>
           </div>
@@ -133,26 +133,26 @@ export default function About() {
       {/* Mission & Vision Cards */}
       <section id="mission" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-28">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <GlassCard className="p-8 sm:p-12" glowColor="purple">
-            <span className="inline-block px-3 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-6">
-              Our Mission
+          <GlassCard className="p-8 sm:p-12 border-neon" glowColor="none">
+            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-neon mb-6 block">
+              ↳ OUR MISSION
             </span>
-            <h3 className="text-2xl sm:text-3xl font-display font-semibold text-foreground mb-4">
+            <h3 className="text-2xl sm:text-3xl font-display font-black text-white uppercase tracking-tighter mb-4 leading-[0.9]">
               Empower ambitious organizations to lead their industries with cutting-edge digital products.
             </h3>
-            <p className="text-base text-foreground/75 leading-relaxed">
+            <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
               We empower our partners by delivering resilient, high-speed, and visually stunning software solutions that eliminate friction, capture market share, and turn visitors into loyal customers.
             </p>
           </GlassCard>
 
-          <GlassCard className="p-8 sm:p-12" glowColor="blue">
-            <span className="inline-block px-3 py-1 rounded-md bg-blue-500/10 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-6">
-              Our Vision
+          <GlassCard className="p-8 sm:p-12" glowColor="none">
+            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-coral mb-6 block">
+              ↳ OUR VISION
             </span>
-            <h3 className="text-2xl sm:text-3xl font-display font-semibold text-foreground mb-4">
+            <h3 className="text-2xl sm:text-3xl font-display font-black text-white uppercase tracking-tighter mb-4 leading-[0.9]">
               Become the global benchmark for modern, AI-integrated software agency engineering.
             </h3>
-            <p className="text-base text-foreground/75 leading-relaxed">
+            <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
               We see a future where every digital interaction is instantaneous, beautifully crafted, and intelligent. We are building the engineering standards and workflows to make that future a reality today.
             </p>
           </GlassCard>
@@ -162,21 +162,21 @@ export default function About() {
       {/* Our Values */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-28">
         <SectionHeading
-          badge="Core Values"
-          title="What We"
-          highlight="Stand For"
-          subtitle="The non-negotiable principles that dictate how we write code, design interfaces, and partner with clients."
+          badge="OUR ARCHITECTURE"
+          title="INFRASTRUCTURE"
+          highlight="REIMAGINED."
+          subtitle="Cloud foundations with the speed, control, and visibility your next chapter demands."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {values.map((val, idx) => (
-            <GlassCard key={idx} className="flex flex-col justify-between" glowColor="purple">
+            <GlassCard key={idx} className="flex flex-col justify-between hover:border-neon transition-colors duration-500" glowColor="none">
               <div>
-                <div className="text-3xl font-display text-purple-400 mb-4">{val.icon}</div>
-                <h3 className="text-xl font-display font-semibold text-foreground mb-3">
+                <div className="text-sm font-mono text-neon mb-4">0{idx + 1}</div>
+                <h3 className="text-2xl font-display font-black text-white uppercase tracking-tighter mb-3">
                   {val.title}
                 </h3>
-                <p className="text-sm text-foreground/75 leading-relaxed">
+                <p className="text-sm text-foreground/60 leading-relaxed font-mono">
                   {val.description}
                 </p>
               </div>
@@ -188,24 +188,24 @@ export default function About() {
       {/* Technology Stack Grid */}
       <section id="tech-stack" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <SectionHeading
-          badge="Engineering Arsenal"
-          title="Our Technology"
-          highlight="Stack"
-          subtitle="We use battle-tested, modern technologies that offer maximum speed, security, and scalability."
+          badge="CAPABILITIES"
+          title="SEE THE WHOLE"
+          highlight="MACHINE."
+          subtitle="A healthy stack is not a collection of tools. It is a living system with feedback, memory, and a pulse you can trust."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {techStack.map((group, index) => (
-            <GlassCard key={index} className="flex flex-col justify-between" glowColor="purple">
+            <GlassCard key={index} className="flex flex-col justify-between hover:border-neon transition-colors duration-500" glowColor="none">
               <div>
-                <h3 className="text-lg font-display font-semibold text-foreground border-b border-white/10 pb-4 mb-6">
+                <h3 className="text-sm font-mono font-bold text-neon border-b border-white/10 pb-4 mb-6 uppercase tracking-widest">
                   {group.category}
                 </h3>
                 <ul className="space-y-4">
                   {group.items.map((tech, i) => (
-                    <li key={i} className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-foreground/90">{tech.name}</span>
-                      <span className="text-xs px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-300 font-mono">
+                    <li key={i} className="flex items-center justify-between group cursor-default">
+                      <span className="text-sm font-medium text-white group-hover:text-neon transition-colors font-mono">{tech.name}</span>
+                      <span className="text-xs px-2.5 py-1 bg-white/5 border border-white/10 text-white/50 font-mono uppercase tracking-widest">
                         {tech.badge}
                       </span>
                     </li>

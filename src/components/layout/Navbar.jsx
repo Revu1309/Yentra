@@ -30,9 +30,9 @@ export default function Navbar() {
   ];
 
   const getNavLinkClass = ({ isActive }) =>
-    `text-sm font-medium transition-colors duration-200 ${
+    `text-sm font-mono uppercase font-bold tracking-widest transition-colors duration-200 ${
       isActive
-        ? 'text-purple-400 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]'
+        ? 'text-neon'
         : 'text-foreground/80 hover:text-foreground'
     }`;
 
@@ -105,9 +105,9 @@ export default function Navbar() {
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `px-3 py-2 rounded-lg text-base font-medium transition-colors ${
+                  `px-3 py-2 rounded-none font-mono uppercase font-bold tracking-widest text-sm transition-colors ${
                     isActive
-                      ? 'bg-purple-500/15 text-purple-400'
+                      ? 'bg-neon text-black'
                       : 'text-foreground/80 hover:bg-white/5 hover:text-foreground'
                   }`
                 }

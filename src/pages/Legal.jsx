@@ -9,26 +9,26 @@ export default function Legal() {
 
   return (
     <div className="relative pt-32 pb-20 overflow-hidden">
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-purple-600/10 blur-[140px] pointer-events-none -z-10" />
-
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/30 mb-6">
-            Legal Information
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-display font-medium text-foreground tracking-tight mb-4">
-            {isPrivacy ? 'Privacy Policy' : 'Terms & Conditions'}
+          <div className="flex justify-center mb-12">
+            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-neon">
+              ↳ SYSTEM / LEGAL
+            </span>
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-display font-black text-white uppercase tracking-tighter mb-4">
+            {isPrivacy ? 'PRIVACY POLICY' : 'TERMS & CONDITIONS'}
           </h1>
-          <p className="text-sm text-foreground/60">
+          <p className="font-mono text-xs text-foreground/50 uppercase tracking-widest">
             Last Updated: August 1, 2026
           </p>
         </div>
 
-        <GlassCard className="p-8 sm:p-12 space-y-8 text-foreground/80 leading-relaxed" glowColor="purple">
+        <GlassCard className="p-8 sm:p-12 space-y-8 font-mono text-sm text-foreground/80 leading-relaxed uppercase" glowColor="none">
           {isPrivacy ? (
             <>
               <div>
-                <h2 className="text-xl font-display font-semibold text-foreground mb-3">
+                <h2 className="text-xl font-display font-black text-white uppercase tracking-tighter mb-3">
                   1. Information We Collect
                 </h2>
                 <p className="text-sm">
@@ -36,7 +36,7 @@ export default function Legal() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl font-display font-semibold text-foreground mb-3">
+                <h2 className="text-xl font-display font-black text-white uppercase tracking-tighter mb-3">
                   2. How We Use Your Information
                 </h2>
                 <p className="text-sm">
@@ -44,7 +44,7 @@ export default function Legal() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl font-display font-semibold text-foreground mb-3">
+                <h2 className="text-xl font-display font-black text-white uppercase tracking-tighter mb-3">
                   3. Data Security & Storage
                 </h2>
                 <p className="text-sm">
@@ -55,7 +55,7 @@ export default function Legal() {
           ) : (
             <>
               <div>
-                <h2 className="text-xl font-display font-semibold text-foreground mb-3">
+                <h2 className="text-xl font-display font-black text-white uppercase tracking-tighter mb-3">
                   1. Acceptance of Terms
                 </h2>
                 <p className="text-sm">
@@ -63,7 +63,7 @@ export default function Legal() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl font-display font-semibold text-foreground mb-3">
+                <h2 className="text-xl font-display font-black text-white uppercase tracking-tighter mb-3">
                   2. Intellectual Property Ownership
                 </h2>
                 <p className="text-sm">
@@ -71,7 +71,7 @@ export default function Legal() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl font-display font-semibold text-foreground mb-3">
+                <h2 className="text-xl font-display font-black text-white uppercase tracking-tighter mb-3">
                   3. Warranties & SLAs
                 </h2>
                 <p className="text-sm">

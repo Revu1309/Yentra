@@ -234,21 +234,18 @@ export default function Services() {
 
   return (
     <div className="relative pt-32 pb-20 overflow-hidden">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-purple-600/10 blur-[150px] pointer-events-none -z-10" />
-
       {/* Hero Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/30 mb-6">
-          Our Services
-        </span>
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-medium text-foreground tracking-tight max-w-4xl mx-auto leading-[1.1] mb-8">
-          Full-spectrum digital{' '}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-            engineering capabilities.
+        <div className="flex justify-center mb-12">
+          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-neon">
+            ↳ SYSTEM / SERVICES
           </span>
+        </div>
+        <h1 className="text-[clamp(4rem,9vw,10rem)] font-display font-black text-white tracking-tighter uppercase leading-[0.85] mb-12">
+          FULL-SPECTRUM <br />
+          <span className="text-neon">CAPABILITIES.</span>
         </h1>
-        <p className="max-w-3xl mx-auto text-lg sm:text-xl text-foreground/75 leading-relaxed">
+        <p className="max-w-2xl mx-auto text-lg sm:text-xl font-mono text-foreground/60 leading-relaxed uppercase">
           Each service at Yentra is delivered by specialized senior engineers and designers who combine deep technical expertise with an eye for stunning aesthetics.
         </p>
       </div>
@@ -261,7 +258,7 @@ export default function Services() {
               <a
                 key={svc.id}
                 href={`#${svc.id}`}
-                className="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium text-foreground/80 hover:text-purple-400 hover:bg-white/5 transition-colors whitespace-nowrap"
+                className="px-4 py-2 rounded-none text-xs sm:text-sm font-mono uppercase tracking-widest text-foreground/80 hover:text-neon hover:bg-white/5 transition-colors whitespace-nowrap"
               >
                 {svc.title}
               </a>
@@ -274,13 +271,13 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
         {allServices.map((service, idx) => (
           <section key={service.id} id={service.id} className="scroll-mt-32">
-            <GlassCard className="p-8 sm:p-12 lg:p-16" glowColor="purple">
+            <GlassCard className="p-8 sm:p-12 lg:p-16" glowColor="none">
               {/* Header Info */}
               <div className="border-b border-white/10 pb-8 mb-12">
-                <span className="inline-block px-3 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-4">
-                  {service.badge}
+                <span className="font-mono text-xs font-semibold uppercase tracking-widest text-neon block mb-6">
+                  ↳ {service.badge}
                 </span>
-                <h2 className="text-3xl sm:text-5xl font-display font-semibold text-foreground mb-6">
+                <h2 className="text-4xl sm:text-6xl font-display font-black text-white uppercase tracking-tighter mb-6">
                   {service.title}
                 </h2>
                 <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed max-w-4xl">
@@ -292,27 +289,25 @@ export default function Services() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-12">
                 {/* Who It's For */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-purple-400" />
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-neon flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-none bg-neon" />
                     Who It's For
                   </h3>
-                  <p className="text-sm sm:text-base text-foreground/75 leading-relaxed">
+                  <p className="text-sm font-mono text-foreground/60 leading-relaxed uppercase">
                     {service.whoItsFor}
                   </p>
                 </div>
 
                 {/* Benefits */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-purple-400" />
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-neon flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-none bg-neon" />
                     Key Benefits
                   </h3>
                   <ul className="space-y-3">
                     {service.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm sm:text-base text-foreground/80">
-                        <svg className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
+                      <li key={i} className="flex items-start gap-2.5 text-sm font-mono text-white/80 uppercase">
+                        <span className="text-neon mt-0.5">›</span>
                         <span>{benefit}</span>
                       </li>
                     ))}
@@ -321,16 +316,14 @@ export default function Services() {
 
                 {/* Deliverables */}
                 <div className="space-y-4">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-purple-400 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-purple-400" />
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-widest text-coral flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-none bg-coral" />
                     Tangible Deliverables
                   </h3>
                   <ul className="space-y-3">
                     {service.deliverables.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm sm:text-base text-foreground/80">
-                        <svg className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                      <li key={i} className="flex items-start gap-2.5 text-sm font-mono text-white/80 uppercase">
+                        <span className="text-coral mt-0.5">›</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -342,14 +335,14 @@ export default function Services() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8 border-t border-white/10 items-center">
                 {/* Process Steps */}
                 <div className="lg:col-span-7">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50 block mb-4">
+                  <span className="text-xs font-mono font-bold uppercase tracking-widest text-foreground/50 block mb-4">
                     Execution Process
                   </span>
                   <div className="flex flex-wrap items-center gap-2">
                     {service.process.map((step, i) => (
                       <React.Fragment key={i}>
-                        <span className="px-3 py-1.5 rounded-lg bg-white/5 text-xs font-medium text-foreground/80 border border-white/10">
-                          {i + 1}. {step}
+                        <span className="px-3 py-1.5 rounded-none bg-white/5 text-xs font-mono uppercase text-foreground/80 border border-white/10">
+                          {String(i + 1).padStart(2, '0')}. {step}
                         </span>
                         {i < service.process.length - 1 && (
                           <span className="text-foreground/30 hidden sm:inline">→</span>
@@ -361,14 +354,14 @@ export default function Services() {
 
                 {/* Technologies */}
                 <div className="lg:col-span-5 lg:text-right">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-foreground/50 block mb-4">
+                  <span className="text-xs font-mono font-bold uppercase tracking-widest text-foreground/50 block mb-4">
                     Technologies Used
                   </span>
                   <div className="flex flex-wrap gap-2 lg:justify-end">
                     {service.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 rounded-full bg-purple-500/10 text-xs font-medium text-purple-300 border border-purple-500/20"
+                        className="px-3 py-1.5 rounded-none bg-white/5 text-xs font-mono uppercase text-white/50 border border-white/10"
                       >
                         {tech}
                       </span>

@@ -21,8 +21,8 @@ function AppLayout() {
   const isHome = location.pathname === '/';
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground selection:bg-purple-500/30 selection:text-white">
-      {!isHome && <Navbar />}
+    <div className="min-h-screen flex flex-col bg-background text-foreground selection:bg-neon selection:text-black">
+      <Navbar />
       <main className={isHome ? '' : 'flex-1'}>
         <Routes>
           <Route path="/"         element={<Home />} />

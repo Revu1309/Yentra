@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollFloat from './ScrollFloat';
 
 export default function SectionHeading({
   badge,
@@ -10,29 +11,47 @@ export default function SectionHeading({
 }) {
   const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
   const badgeAlign = align === 'center' ? 'justify-center' : 'justify-start';
+  const flexAlign = align === 'center' ? 'justify-center' : 'justify-start';
+
+  const fullTitle = `${title} ${highlight || ''}`.trim();
 
   return (
     <div className={`max-w-3xl mb-16 ${alignClass} ${className}`}>
       {badge && (
-        <div className={`flex ${badgeAlign} mb-4`}>
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-purple-500/10 text-purple-400 border border-purple-500/30">
-            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-            {badge}
+        <div className={`flex ${badgeAlign} mb-6`}>
+          <span className="font-mono text-xs font-semibold uppercase tracking-widest text-neon">
+            ↳ {badge}
           </span>
         </div>
       )}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-medium tracking-tight text-foreground leading-tight mb-4">
-        {title}{' '}
-        {highlight && (
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
-            {highlight}
-          </span>
-        )}
-      </h2>
+      
+      <div className={`mb-6 w-full relative flex ${flexAlign}`}>
+        <ScrollFloat
+          animationDuration={1.2}
+          ease='back.inOut(2)'
+          scrollStart='top bottom'
+          scrollEnd='center center'
+          stagger={0.02}
+          textClassName="text-[clamp(3rem,8vw,8rem)] font-display font-black tracking-tighter uppercase text-white leading-[0.85]"
+          containerClassName="overflow-visible"
+        >
+          {fullTitle}
+        </ScrollFloat>
+      </div>
+
       {subtitle && (
-        <p className="text-base sm:text-lg text-foreground/70 leading-relaxed font-normal">
+        <ScrollFloat
+          as="p"
+          animationDuration={1}
+          ease='power2.out'
+          scrollStart='top bottom-=10%'
+          scrollEnd='center center'
+          stagger={0.005}
+          textClassName="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed font-normal max-w-2xl mx-auto"
+          containerClassName="mt-4 overflow-visible"
+        >
           {subtitle}
-        </p>
+        </ScrollFloat>
       )}
     </div>
   );

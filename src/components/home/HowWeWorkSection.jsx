@@ -55,22 +55,22 @@ export default function HowWeWorkSection() {
         {steps.map((step, index) => (
           <GlassCard
             key={index}
-            className={`relative flex flex-col justify-between ${
-              index === 6 ? 'md:col-span-2 lg:col-span-2 bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border-purple-500/30' : ''
+            className={`relative flex flex-col justify-between group hover:border-neon hover:bg-neon transition-colors duration-500 ${
+              index === 6 ? 'md:col-span-2 lg:col-span-2 border-neon' : ''
             }`}
-            glowColor="purple"
+            glowColor="none"
           >
             <div>
               <div className="flex items-center justify-between mb-6">
-                <span className="font-mono text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+                <span className="font-mono text-3xl font-black text-neon group-hover:text-black transition-colors">
                   {step.number}
                 </span>
-                <span className="w-8 h-px bg-purple-500/30" />
+                <span className="w-8 h-px bg-neon group-hover:bg-black transition-colors" />
               </div>
-              <h3 className="text-xl font-display font-semibold text-foreground mb-3">
+              <h3 className="text-xl font-display font-black text-white uppercase tracking-tighter mb-3 group-hover:text-black transition-colors">
                 {step.title}
               </h3>
-              <p className="text-sm text-foreground/75 leading-relaxed">
+              <p className="font-mono text-xs uppercase text-foreground/75 leading-relaxed tracking-widest group-hover:text-black/70 transition-colors">
                 {step.description}
               </p>
             </div>
