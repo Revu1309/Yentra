@@ -16,7 +16,7 @@ export default function SectionHeading({
   const fullTitle = `${title} ${highlight || ''}`.trim();
 
   return (
-    <div className={`max-w-3xl mb-16 ${alignClass} ${className}`}>
+    <div className={`max-w-5xl mb-16 ${alignClass} ${className}`}>
       {badge && (
         <div className={`flex ${badgeAlign} mb-6`}>
           <span className="font-mono text-xs font-semibold uppercase tracking-widest text-neon">
@@ -32,7 +32,7 @@ export default function SectionHeading({
           scrollStart='top bottom'
           scrollEnd='center center'
           stagger={0.02}
-          textClassName="text-[clamp(3rem,8vw,8rem)] font-display font-black tracking-tighter uppercase text-white leading-[0.85]"
+          textClassName="text-[clamp(2rem,5.5vw,5.5rem)] font-display font-black tracking-tighter uppercase text-white leading-[0.9] whitespace-nowrap"
           containerClassName="overflow-visible"
         >
           {fullTitle}

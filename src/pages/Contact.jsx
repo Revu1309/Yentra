@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SectionHeading from '../components/ui/SectionHeading.jsx';
 import GlassCard from '../components/ui/GlassCard.jsx';
 import GlowButton from '../components/ui/GlowButton.jsx';
+import { companyInfo } from '../data/company.js';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -234,7 +235,7 @@ export default function Contact() {
               Need immediate technical answers? Chat directly with our engineering triage desk on WhatsApp.
             </p>
             <a
-              href="https://wa.me/15550192834"
+              href={`https://wa.me/${companyInfo.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 w-full py-3 bg-neon hover:bg-white text-black font-mono text-xs font-bold tracking-widest uppercase transition-all"
@@ -250,12 +251,12 @@ export default function Contact() {
                 ↳ Phone Number
               </span>
               <a
-                href="tel:+15550192834"
+                href={`tel:${companyInfo.phone}`}
                 className="text-2xl font-display font-black text-white hover:text-neon transition-colors uppercase tracking-tighter"
               >
-                +1 (555) 019-2834
+                {companyInfo.phone}
               </a>
-              <p className="font-mono text-xs text-foreground/60 mt-1 uppercase">Mon — Fri, 9:00 AM — 6:00 PM EST</p>
+              <p className="font-mono text-xs text-foreground/60 mt-1 uppercase">Mon — Fri, 9:00 AM — 6:00 PM</p>
             </div>
 
             <div className="border-t border-white/5 pt-6">
@@ -263,10 +264,10 @@ export default function Contact() {
                 ↳ Email Address
               </span>
               <a
-                href="mailto:hello@yentradigital.com"
+                href={`mailto:${companyInfo.email}`}
                 className="text-2xl font-display font-black text-white hover:text-coral transition-colors uppercase tracking-tighter"
               >
-                hello@yentradigital.com
+                {companyInfo.email}
               </a>
               <p className="font-mono text-xs text-foreground/60 mt-1 uppercase">For proposals & inquiries</p>
             </div>
@@ -276,9 +277,9 @@ export default function Contact() {
                 ↳ Headquarters
               </span>
               <p className="text-xl font-display font-black text-white uppercase tracking-tighter">
-                450 HOWARD ST, FLOOR 8
+                {companyInfo.address.line1}
               </p>
-              <p className="font-mono text-xs text-foreground/60 mt-1 uppercase">San Francisco, CA 94105, USA</p>
+              <p className="font-mono text-xs text-foreground/60 mt-1 uppercase">{companyInfo.address.line2}</p>
             </div>
 
             {/* Social Icons Strip */}
@@ -288,7 +289,7 @@ export default function Contact() {
               </span>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://linkedin.com"
+                  href={companyInfo.socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -299,7 +300,7 @@ export default function Contact() {
                   </svg>
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href={companyInfo.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -310,7 +311,7 @@ export default function Contact() {
                   </svg>
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href={companyInfo.socials.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -321,7 +322,7 @@ export default function Contact() {
                   </svg>
                 </a>
                 <a
-                  href="https://x.com"
+                  href={companyInfo.socials.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="X (Twitter)"

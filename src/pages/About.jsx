@@ -4,6 +4,8 @@ import GlassCard from '../components/ui/GlassCard.jsx';
 import GlowButton from '../components/ui/GlowButton.jsx';
 import CTABannerSection from '../components/home/CTABannerSection.jsx';
 
+import { companyInfo } from '../data/company.js';
+
 export default function About() {
   const values = [
     {
@@ -109,22 +111,12 @@ export default function About() {
               </p>
             </div>
             <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-              <div className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
-                <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">99.9%</div>
-                <div className="font-mono text-xs uppercase tracking-widest font-bold">UPTIME SLA</div>
-              </div>
-              <div className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
-                <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">&lt;100ms</div>
-                <div className="font-mono text-xs uppercase tracking-widest font-bold">AVG API RESPONSE</div>
-              </div>
-              <div className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
-                <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">100+</div>
-                <div className="font-mono text-xs uppercase tracking-widest font-bold">PROJECTS SHIPPED</div>
-              </div>
-              <div className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
-                <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">24/7</div>
-                <div className="font-mono text-xs uppercase tracking-widest font-bold">DEDICATED SUPPORT</div>
-              </div>
+              {companyInfo.stats.map((stat, idx) => (
+                <div key={idx} className="p-6 bg-transparent border border-white/10 text-center hover:bg-neon hover:text-black group transition-colors duration-300">
+                  <div className="text-3xl sm:text-4xl font-display font-black text-neon group-hover:text-black mb-2 tracking-tighter">{stat.value}</div>
+                  <div className="font-mono text-xs uppercase tracking-widest font-bold">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </GlassCard>

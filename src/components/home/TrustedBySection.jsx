@@ -1,14 +1,8 @@
 import React from 'react';
+import { clients } from '../../data/clients.js';
 
 export default function TrustedBySection() {
-  const clients = [
-    { name: 'NexAI Labs', logo: '▲ NEXAI' },
-    { name: 'Vortex Cloud', logo: '◈ VORTEX' },
-    { name: 'HyperScale', logo: '✦ HYPERSCALE' },
-    { name: 'Zenith Pay', logo: '◆ ZENITH' },
-    { name: 'Quantum Core', logo: '● QUANTUM' },
-    { name: 'Aether Group', logo: '■ AETHER' },
-  ];
+  if (!clients || clients.length === 0) return null;
 
   return (
     <section className="relative py-14 border-y border-white/10 bg-background overflow-hidden">

@@ -2,30 +2,10 @@ import React from 'react';
 import GlassCard from '../ui/GlassCard.jsx';
 import SectionHeading from '../ui/SectionHeading.jsx';
 
+import { testimonials } from '../../data/testimonials.js';
+
 export default function TestimonialsSection() {
-  const testimonials = [
-    {
-      quote: 'Yentra completely transformed our web platform. We went from a sluggish legacy portal to a high-speed Next.js application that increased our conversion rate by 310% in just two months.',
-      author: 'Marcus Vance',
-      role: 'Chief Technology Officer',
-      company: 'NexAI Labs',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80'
-    },
-    {
-      quote: 'Their engineering team operates with a level of rigor and visual taste I have rarely seen. Our custom fintech settlement dashboard handles millions daily without a single glitch.',
-      author: 'Elena Rostova',
-      role: 'VP of Product Engineering',
-      company: 'Vortex Cloud',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80'
-    },
-    {
-      quote: 'From SEO optimization to custom AI agent integrations, Yentra is our secret weapon. Their responsive 24/7 support makes them feel like an in-house engineering team.',
-      author: 'David K. Mercer',
-      role: 'Founder & CEO',
-      company: 'HyperScale Systems',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80'
-    }
-  ];
+  if (!testimonials || testimonials.length === 0) return null;
 
   return (
     <section className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -36,7 +16,7 @@ export default function TestimonialsSection() {
         subtitle="Don't just take our word for it. Here is what engineering leaders and CEOs say about partnering with Yentra."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className={`grid grid-cols-1 ${testimonials.length === 1 ? 'max-w-xl mx-auto' : testimonials.length === 2 ? 'md:grid-cols-2 max-w-4xl mx-auto' : 'md:grid-cols-3'} gap-8`}>
         {testimonials.map((testi, index) => (
           <GlassCard key={index} className="flex flex-col justify-between hover:border-neon transition-colors duration-500" glowColor="none">
             <div>
@@ -56,11 +36,17 @@ export default function TestimonialsSection() {
 
             {/* Author */}
             <div className="flex items-center gap-4 pt-6 border-t border-white/5">
-              <img
-                src={testi.avatar}
-                alt={testi.author}
-                className="w-12 h-12 rounded-none object-cover border-2 border-neon grayscale"
-              />
+              {testi.avatar ? (
+                <img
+                  src={testi.avatar}
+                  alt={testi.author}
+                  className="w-12 h-12 rounded-none object-cover border-2 border-neon grayscale"
+                />
+              ) : (
+                <div className="w-12 h-12 rounded-none bg-neon text-black font-display font-black flex items-center justify-center text-lg">
+                  {testi.author ? testi.author.charAt(0).toUpperCase() : 'Y'}
+                </div>
+              )}
               <div>
                 <h4 className="font-display font-black text-white text-sm sm:text-base uppercase tracking-tighter">
                   {testi.author}

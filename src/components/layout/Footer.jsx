@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logoSvg from '../../assets/logo.svg';
+import { companyInfo } from '../../data/company.js';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -43,7 +45,7 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="inline-block">
               <img
-                src="/src/assets/logo.svg"
+                src={logoSvg}
                 alt="Yentra Logo"
                 width={144}
                 height={36}
@@ -57,7 +59,7 @@ export default function Footer() {
             {/* Social Icons */}
             <div className="flex items-center gap-3">
               <a
-                href="https://linkedin.com"
+                href={companyInfo.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -68,7 +70,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://instagram.com"
+                href={companyInfo.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -79,7 +81,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com"
+                href={companyInfo.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -90,13 +92,13 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://x.com"
+                href={companyInfo.socials.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
                 className="w-10 h-10 rounded-none bg-transparent hover:bg-neon border border-white/20 hover:border-neon flex items-center justify-center text-foreground/80 hover:text-black transition-all duration-300"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
               </a>

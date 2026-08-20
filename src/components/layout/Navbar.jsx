@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import GlowButton from '../ui/GlowButton.jsx';
+import logoSvg from '../../assets/logo.svg';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,7 +49,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <img
-            src="/src/assets/logo.svg"
+            src={logoSvg}
             alt="Yentra Logo"
             width={128}
             height={32}
