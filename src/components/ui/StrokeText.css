@@ -1,0 +1,29 @@
+.stroke-text-container {
+  pointer-events: none;
+}
+
+.robust-stroke-text {
+  fill: transparent;
+  stroke-dasharray: 4000;
+  stroke-dashoffset: 4000;
+  /* Draw stroke slowly over 3s, then fade fill in over 1.5s starting at 2.5s */
+  animation: strokeDraw 3s ease-in-out forwards, fillFadeIn 1.5s ease-in-out 2.5s forwards;
+}
+
+@keyframes strokeDraw {
+  0% {
+    stroke-dashoffset: 4000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillFadeIn {
+  0% {
+    fill: transparent;
+  }
+  100% {
+    fill: var(--fill-color);
+  }
+}

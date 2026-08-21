@@ -13,41 +13,47 @@ export default function Home() {
   const whatWeBuildRef = useRef(null);
   const heroSectionRef = useRef(null);
 
+  // Scroll Animation Logic
   useEffect(() => {
     let animationFrameId;
+    let lastScrollY = -1;
+    let lastWindowHeight = -1;
 
     const animate = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       
-      const heroProgress = Math.min(Math.max(scrollY / windowHeight, 0), 1);
-      const isTransitioning = scrollY < windowHeight;
-      const translateY = isTransitioning ? scrollY - windowHeight : 0;
+      // Only perform expensive DOM updates if scroll or resize occurred
+      if (scrollY !== lastScrollY || windowHeight !== lastWindowHeight) {
+        lastScrollY = scrollY;
+        lastWindowHeight = windowHeight;
 
-      if (heroOverlayRef.current) {
-        if (heroProgress < 1) {
-          heroOverlayRef.current.style.display = 'block';
-          // We NO LONGER scale the wrapper, we let HeroSection scale its own internal 3D walls!
-          heroOverlayRef.current.style.pointerEvents = heroProgress < 0.1 ? 'auto' : 'none';
-          
-          if (heroSectionRef.current) {
-            heroSectionRef.current.setScrollProgress(heroProgress);
+        const heroProgress = Math.min(Math.max(scrollY / windowHeight, 0), 1);
+        const isTransitioning = scrollY < windowHeight;
+        const translateY = isTransitioning ? scrollY - windowHeight : 0;
+
+        if (heroOverlayRef.current) {
+          if (heroProgress < 1) {
+            heroOverlayRef.current.style.display = 'block';
+            heroOverlayRef.current.style.pointerEvents = heroProgress < 0.1 ? 'auto' : 'none';
+            
+            if (heroSectionRef.current) {
+              heroSectionRef.current.setScrollProgress(heroProgress);
+            }
+          } else {
+            heroOverlayRef.current.style.display = 'none';
           }
-        } else {
-          heroOverlayRef.current.style.display = 'none';
         }
-      }
 
-      if (normalContentRef.current) {
-        // Only translate the whole page to lock it to the viewport
-        normalContentRef.current.style.transform = `translateY(${translateY}px)`;
-      }
+        if (normalContentRef.current) {
+          normalContentRef.current.style.transform = `translateY(${translateY}px)`;
+        }
 
-      if (whatWeBuildRef.current) {
-        // Only start fading in the next section once we are deep in the void (progress > 0.5)
-        const nextProgress = Math.max(0, (heroProgress - 0.5) * 2);
-        whatWeBuildRef.current.style.transform = `scale(${Math.max(0.7, 0.7 + nextProgress * 0.3)})`;
-        whatWeBuildRef.current.style.opacity = nextProgress;
+        if (whatWeBuildRef.current) {
+          const nextProgress = Math.max(0, (heroProgress - 0.5) * 2);
+          whatWeBuildRef.current.style.transform = `scale(${Math.max(0.7, 0.7 + nextProgress * 0.3)})`;
+          whatWeBuildRef.current.style.opacity = nextProgress;
+        }
       }
 
       animationFrameId = requestAnimationFrame(animate);

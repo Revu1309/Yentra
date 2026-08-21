@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import TrueFocus from '../TrueFocus.jsx';
 
+import StrokeText from '../ui/StrokeText.jsx';
+
 const HeroSection = forwardRef((props, ref) => {
   const sceneRef = useRef(null);
   const wallTopRef = useRef(null);
@@ -13,12 +15,22 @@ const HeroSection = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     setScrollProgress: (progress) => {
+      // Only recalculate if progress changed significantly (avoid micro-jitter thrashing)
+      if (Math.abs(scrollProgressRef.current - progress) < 0.0001 && progress !== 0 && progress !== 1) {
+        return;
+      }
+      
       scrollProgressRef.current = progress;
-      const zoomScale = 1 + progress * 25; 
+      const exactScale = 800 / Math.max(0.1, 800 - progress * 1500);
       const fadeOut = Math.max(0, 1 - (Math.max(0, progress - 0.4) * 1.66));
 
+      if (wallTopRef.current) wallTopRef.current.style.opacity = fadeOut;
+      if (wallBottomRef.current) wallBottomRef.current.style.opacity = fadeOut;
+      if (wallLeftRef.current) wallLeftRef.current.style.opacity = fadeOut;
+      if (wallRightRef.current) wallRightRef.current.style.opacity = fadeOut;
+      
       if (heroCopyRef.current) {
-        heroCopyRef.current.style.transform = `scale(${zoomScale})`;
+        heroCopyRef.current.style.transform = `translate(-50%, -50%) scale(${exactScale})`;
         heroCopyRef.current.style.opacity = fadeOut;
       }
     }
@@ -29,6 +41,7 @@ const HeroSection = forwardRef((props, ref) => {
     let animationFrameId;
     let targetX = 0, targetY = 0;
     let currentX = 0, currentY = 0;
+    let lastZ = -1, lastX = -999, lastY = -999;
 
     const onMouseMove = (e) => {
       targetX = (e.clientX / window.innerWidth - 0.5) * 10;
@@ -40,22 +53,29 @@ const HeroSection = forwardRef((props, ref) => {
         currentX += (targetX - currentX) * 0.05;
         currentY += (targetY - currentY) * 0.05;
         
-        // Translate the scene on Z-axis to create the fly-through, then apply parallax rotations
-        const zTranslation = scrollProgressRef.current * 1500; // Fly forward 1500px
-        sceneRef.current.style.transform = `translateZ(${zTranslation}px) rotateX(${-currentY}deg) rotateY(${currentX}deg)`;
+        const zTranslation = scrollProgressRef.current * 1500;
         
-        // Fade out the entire scene slightly at the very end to hide clipping
-        sceneRef.current.style.opacity = Math.max(0, 1 - Math.max(0, (scrollProgressRef.current - 0.8) * 5));
+        // Only update DOM if the difference is noticeable (> 0.01 threshold for rotation/translation)
+        if (Math.abs(lastZ - zTranslation) > 0.01 || Math.abs(lastX - currentX) > 0.01 || Math.abs(lastY - currentY) > 0.01) {
+          sceneRef.current.style.transform = `translateZ(${zTranslation}px) rotateX(${-currentY}deg) rotateY(${currentX}deg)`;
+          
+          // Fade out the entire scene slightly at the very end to hide clipping
+          sceneRef.current.style.opacity = Math.max(0, 1 - Math.max(0, (scrollProgressRef.current - 0.8) * 5));
+          
+          lastZ = zTranslation;
+          lastX = currentX;
+          lastY = currentY;
+        }
       }
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('mousemove', onMouseMove);
     animate();
+    window.addEventListener('mousemove', onMouseMove);
 
     return () => {
-      window.removeEventListener('mousemove', onMouseMove);
       cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('mousemove', onMouseMove);
     };
   }, []);
 
@@ -71,27 +91,34 @@ const HeroSection = forwardRef((props, ref) => {
         </div>
       </div>
 
-      {/* ── Hero Content Layer ────────────────────────────────────────────── */}
-      <div className="relative flex flex-col items-center justify-center h-full z-20 overflow-visible">
-        {/* Content */}
-        <div ref={heroCopyRef} className="relative flex flex-col items-center text-center z-10" style={{ willChange: 'transform, opacity' }}>
-          <h1
-            className="yentra-gradient-text"
-            style={{
-              fontFamily: "'General Sans', sans-serif",
-              fontSize: 220,
-              fontWeight: 400,
-              lineHeight: 1.02,
-              letterSpacing: '-0.024em',
-              margin: 0,
-              padding: 0,
-              cursor: 'pointer'
-            }}
-          >
-            YENTRA
-          </h1>
+      {/* ── Hero Content Layer (2D Overlay) ─────────────────────────────── */}
+      {!props.hideText && (
+        <div 
+          ref={heroCopyRef} 
+          className="absolute flex flex-col items-center text-center pointer-events-auto z-30" 
+          style={{ 
+            top: '50%',
+            left: '50%',
+            willChange: 'transform, opacity', 
+            transform: 'translate(-50%, -50%) scale(1)',
+            width: '100%',
+            maxWidth: '1200px'
+          }}
+        >
+          <div style={{ transform: 'translateY(12%)', width: '100%' }}>
+            <StrokeText
+              text="YENTRA"
+              strokeColor="#c4ff00"
+              fillColor="#ffffff"
+              strokeWidth={1.5}
+              fontSize={120}
+              fontWeight={600}
+              letterSpacing={-0.02 * 120}
+              style={{ fontFamily: "'General Sans', sans-serif" }}
+            />
+          </div>
 
-          <div style={{ marginTop: '1.5rem' }}>
+          <div className="absolute top-full mt-20" style={{ opacity: 0, animation: 'fadeInSlogan 1.5s ease-in-out 3.8s forwards' }}>
             <TrueFocus 
               sentence="Create Beyond"
               manualMode={false}
@@ -103,7 +130,13 @@ const HeroSection = forwardRef((props, ref) => {
             />
           </div>
         </div>
-      </div>
+      )}
+      <style>{`
+        @keyframes fadeInSlogan {
+          0% { opacity: 0; filter: blur(10px); transform: translateY(10px); }
+          100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+        }
+      `}</style>
     </div>
   );
 });
